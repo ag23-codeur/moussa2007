@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <MOUSSA>MOUSSA</MOUSSA>
+</head>
+<body>
+    
+</body>
+</html>
+<h2 class="section-title">Formulaire d'Inscription</h2>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Prénom *</label>
+                            <input type="text" id="firstName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Nom *</label>
+                            <input type="text" id="lastName" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service d'intérêt</label>
+                        <select id="service" class="form-control">
+                            <option value="">Sélectionnez un service</option>
+                            <option value="support">Support technique</option>
+                            <option value="sales">Service commercial</option>
+                            <option value="billing">Service facturation</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Votre message *</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">Je souhaite m'inscrire à la newsletter</label>
+                    </div>
+                    
+                    <button type="submit" class="btn">Envoyer le formulaire</button>
+                    
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle"></i> Merci ! Votre message a été envoyé avec succès.
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; Avec moussa AG ALBACHAR vous etes au paradis</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des valeurs du formulaire
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulation d'envoi - En production, vous enverriez les données à un serveur
+            console.log('Formulaire soumis:');
+            console.log('Prénom:', firstName);
+            console.log('Nom:', lastName);
+            console.log('Email:', email);
+            console.log('Message:', message);
+            
+            // Affichage du message de succès
+            const successMessage = document.getElementById('successMessage');
