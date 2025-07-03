@@ -1,0 +1,62 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: [""]            - nom : Cache
+  utilisations : actions/cache@v4.2.3
+  avec:
+    # Une liste de fichiers, de répertoires et de modèles génériques à mettre en cache et à restaurer
+    chemin:
+    # Une clé explicite pour restaurer et sauvegarder le cache
+    clé:
+    # Une chaîne multiligne ordonnée listant les clés correspondant au préfixe, utilisées pour restaurer le cache obsolète si aucune correspondance n'a été trouvée pour la clé. Notez que `cache-hit` renvoie false dans ce cas.
+    restore-keys : # facultatif
+    # La taille du bloc utilisé pour diviser les fichiers volumineux lors du téléchargement, en octets
+    upload-chunk-size : # facultatif
+    # Un booléen facultatif lorsqu'il est activé, permet aux exécuteurs Windows d'enregistrer ou de restaurer des caches qui peuvent être restaurés ou enregistrés respectivement sur d'autres plates-formes
+    enableCrossOsArchive : # facultatif, la valeur par défaut est false
+    # Échec du flux de travail si l'entrée du cache n'est pas trouvée
+    fail-on-cache-miss : # facultatif, la valeur par défaut est false
+    # Vérifier si une entrée de cache existe pour les entrées données (clé, clés de restauration) sans télécharger le cache
+    recherche uniquement : # facultatif, la valeur par défaut est false
+    # Exécutez l'étape de publication pour enregistrer le cache même si une autre étape avant échoue
+    save-always : # facultatif, la valeur par défaut est false
+          
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
